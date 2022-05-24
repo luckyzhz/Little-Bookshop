@@ -1,0 +1,286 @@
+/* ---------------- 网页整体设置 ---------------- */
+
+/* 首先把盒模型设为 border-box，避免溢出。 */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  transition: inherit;
+}
+
+body {
+  /* margin 设为 0，从而可以让背景色铺满整个网页 */
+  margin: 0;
+  /* 让网页各区块和浏览器边界有空隙 */
+  padding: 1rem;
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------------- 单页面应用的整体布局 ---------------- */
+
+#book-admin {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+/* ---------------- 页首 ---------------- */
+
+#book-admin>header {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+header>img:nth-child(1) {
+  width: 30%;
+}
+
+header>img:nth-child(3) {
+  width: 10%;
+  cursor: pointer;
+}
+
+/* ---------------- 搜索框 ---------------- */
+
+/* 整个 form 容器 */
+.search-box {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.search-box>input {
+  /* 去除输入框默认的聚焦发光 */
+  outline: none;
+  margin: 0;
+  width: calc(100% - 3rem);
+  height: 3rem;
+  font-size: 1.4rem;
+  border: solid 2px #2B2D42;
+  border-radius: 8px 0 0 8px;
+  border-right: solid 0.5px #8D99AE;
+}
+
+.search-box>button {
+  cursor: pointer;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  border: solid 2px #2B2D42;
+  border-radius: 0 8px 8px 0;
+  border-left: solid 0.5px #8D99AE;
+}
+
+.search-box>button>img {
+  display: block;
+  margin: 10%;
+}
+
+/* ---------------- 水平分割线 ---------------- */
+
+#divide {
+  font-size: 2rem;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.line {
+  flex-grow: 1;
+  align-self: center;
+  height: 1px;
+  background-color: #8D99AE;
+}
+
+#divide>div:nth-child(2) {
+  margin: 0 2rem;
+}
+
+/* ---------------- 管理面板 ---------------- */
+
+#admin-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+/* ---------------- 左边 add 或 update 书籍的组件 ---------------- */
+
+#big-book {
+  position: relative;
+  width: 40%;
+}
+
+/* 利用 margin-top 属性，实现盒子特定的宽高比 */
+#big-book::after {
+  content: "";
+  display: block;
+  margin-top: calc(600 / 600 * 100%);
+}
+
+.admin-book-component {
+  /* 因为父容器利用伪元素撑起盒子，实现特定宽高比，所以这里要设为绝对定位，
+  让其脱离正常文档流，也就是浮在那个撑起盒子高度的伪元素上面 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: solid 1px #2B2D42;
+  border-radius: 4px;
+  overflow: hidden;
+  /* 内部采用 flex 布局 */
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+/* 书籍管理组件里的图片 */
+.admin-book-component>.image-box {
+  width: 100%;
+  height: 40%;
+  background-color: #EDF2F4;
+  text-align: center;
+}
+
+.admin-book-component>.image-box>img {
+  height: 100%;
+}
+
+/* 书籍管理组件中间的书籍信息 */
+
+.admin-book-component>table.book-info {
+  width: 100%;
+  height: 50%;
+}
+
+.admin-book-component>.book-info td:nth-child(1) {
+  width: 30%;
+  text-align: right;
+}
+
+/* 书籍管理组件里的输入框 */
+
+.admin-book-component>.book-info input {
+  /* 去除输入框默认的聚焦发光 */
+  outline: none;
+  margin: 0;
+  width: 90%;
+  height: 2rem;
+  border: solid 1px #8D99AE;
+  border-radius: 4px;
+}
+
+/* 书籍管理组件里的按钮 */
+
+.admin-book-component .button-box {
+  height: 10%;
+}
+
+.admin-book-component button {
+  float: left;
+  margin: 0;
+  width: 50%;
+  height: 100%;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+/* ---------------- 竖分割线 ---------------- */
+
+#vline {
+  width: 1px;
+  background-color: #8D99AE;
+  align-self: stretch;
+}
+
+/* ---------------- 书本 ---------------- */
+
+#result {
+  width: 40%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.book {
+  position: relative;
+  width: 80%;
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0;
+  border: solid 1px #2B2D42;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+.book>img {
+  width: 25%;
+}
+
+.book>.book-info {
+  width: 65%;
+}
+
+.book>a {
+  width: 8%;
+  align-self: end;
+  padding: 4px;
+}
+
+/* 删除按钮 */
+.book>button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* ---------------- 登陆面板 ---------------- */
+
+#login-panel {
+  width: 40%;
+  font-size: 1.4rem;
+  line-height: 3;
+}
+
+#login-panel>table {
+  width: 100%;
+  padding: 1rem;
+}
+
+#login-panel>table td:nth-child(1) {
+  text-align: right;
+}
+
+#login-panel>table input {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.2rem;
+}
+
+/* 提交按钮的样式 */
+#login-panel button {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.2em;
+  /* 手型指针 */
+  cursor: pointer;
+}

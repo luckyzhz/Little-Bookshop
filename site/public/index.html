@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Share</title>
+  <link rel="icon" href="./resources/images/zhi-logo.svg">
+
+  <!-- CSS 样式 -->
+  <link rel="stylesheet" href="./resources/css/index.css">
+
+  <!-- 引入 vue.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script defer src="./resources/js/components.js"></script>
+  <script defer src="./resources/js/index.js"></script>
+</head>
+
+<body>
+  <!-- 点击搜索按钮后，会添加一个值为 after-search 的 class 属性，于是可以改变页面布局 -->
+  <div id="book-share" v-bind:class="{ 'after-search': isAfterSearch }">
+    <header>
+      <img v-bind:src="imageUrl">
+      <p v-if="!isAfterSearch">Enter an <span style="color: #EF233C;">ISBN</span> number to search books</p>
+      <!-- 点击搜索按钮后，触发自定义的 searched 事件。监听捕获后触发 showResult(isbn) 函数 -->
+      <!-- 内部子组件抛出事件时可以带有参数，会传给被调用的函数 showResult(isbn) 的第一个形参 -->
+      <search-box v-on:searched="showResult"></search-box>
+    </header>
+    <!-- 分割线 -->
+    <div id="divide" v-if="isAfterSearch">
+      <div class="line"></div>
+      <div>Results</div>
+      <div class="line"></div>
+    </div>
+    <!-- 搜索结果 -->
+    <div id="result" v-if="isAfterSearch">
+      <book v-for="book in books" v-bind:key="book.isbn" v-bind:bookobject="book"></book>
+    </div>
+  </div>
+</body>
+
+</html>

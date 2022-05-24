@@ -1,0 +1,179 @@
+/* ---------------- 网页整体设置 ---------------- */
+
+/* 首先把盒模型设为 border-box，避免溢出。 */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  transition: inherit;
+}
+
+body {
+  /* margin 设为 0，从而可以让背景色铺满整个网页 */
+  margin: 0;
+  /* 让网页各区块和浏览器边界有空隙 */
+  padding: 1rem;
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------------- 单页面应用的整体布局 ---------------- */
+
+#book-share {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+/* ---------------- 页首 ---------------- */
+
+#book-share>header {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 6%;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+#book-share>header>img {
+  width: 30%;
+}
+
+/* 点击搜索后搜索框和图片的样式 */
+
+#book-share.after-search>header {
+  display: unset;
+  margin-top: 1rem;
+}
+
+#book-share.after-search>header>img {
+  float: left;
+  height: 6rem;
+}
+
+#book-share.after-search .search-box {
+  margin-top: 2rem;
+}
+
+/* ---------------- 搜索框 ---------------- */
+
+/* 整个 form 容器 */
+.search-box {
+  width: 40%;
+  justify-content: center;
+  display: flex;
+}
+
+.search-box>input {
+  /* 去除输入框默认的聚焦发光 */
+  outline: none;
+  margin: 0;
+  width: calc(100% - 3rem);
+  height: 3rem;
+  font-size: 1.4rem;
+  border: solid 2px #2B2D42;
+  border-radius: 8px 0 0 8px;
+  border-right: solid 0.5px #8D99AE;
+}
+
+.search-box>button {
+  cursor: pointer;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  border: solid 2px #2B2D42;
+  border-radius: 0 8px 8px 0;
+  border-left: solid 0.5px #8D99AE;
+}
+
+.search-box>button>img {
+  display: block;
+  margin: 10%;
+}
+
+/* ---------------- 分割线 ---------------- */
+
+#divide {
+  font-size: 2rem;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.line {
+  flex-grow: 1;
+  align-self: center;
+  height: 1px;
+  background-color: #8D99AE;
+}
+
+#divide>div:nth-child(2) {
+  margin: 0 2rem;
+}
+
+/* ---------------- 书本 ---------------- */
+
+#result {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.book {
+  width: 48%;
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0;
+  border: solid 1px #2B2D42;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.book>img {
+  width: 25%;
+  border-radius: 4px;
+}
+
+.book>.book-info {
+  width: 65%;
+}
+
+.book>a {
+  width: 8%;
+  align-self: end;
+  padding: 4px;
+}
+
+/* ---------------- 移动端 ---------------- */
+
+@media screen and (max-width: 768px) {
+  #book-share>header {
+    margin-top: 6rem;
+    font-size: 1.5rem;
+  }
+
+  #book-share>header>img {
+    width: 60%;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  #result {
+    width: 100%;
+  }
+
+  .book {
+    width: 100%;
+  }
+}
