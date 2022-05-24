@@ -36,13 +36,3 @@ let share = new Vue({
     }
   }
 })
-
-// let aBook = {
-//   isbn: 1,
-//   title: 1,
-//   author: 1,
-//   coverUrl: 1,
-//   downloadLink: 1
-// }
-
-// share.books = [aBook, aBook];
