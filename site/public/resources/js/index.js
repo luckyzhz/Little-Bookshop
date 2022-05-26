@@ -5,7 +5,7 @@ let share = new Vue({
     isAfterSearch: false,
     imageUrl: "./resources/images/bookShare.svg",
     http: new XMLHttpRequest(),
-    queryUrl: "http://localhost/bookshop/public/api/index.php",
+    queryUrl: "./api/index.php",
   },
   methods: {
     // 显示查询结果

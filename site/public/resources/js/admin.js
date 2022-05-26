@@ -6,7 +6,7 @@ let bookAdmin = new Vue({
     password: "",
     isLogined: sessionStorage.getItem("email"),
     http: new XMLHttpRequest(),
-    queryUrl: "http://localhost/bookshop/public/api/index.php",
+    queryUrl: "./api/index.php",
     coverUrl: ""    // 左边书籍管理组件的封面
   },
   methods: {
